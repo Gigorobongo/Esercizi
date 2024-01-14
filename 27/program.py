@@ -31,4 +31,17 @@ def es27(tabella, colonna, valore):
     risultera'  modificata  in [{'nome': 'Bruno','tel': 5558432}]
 
     '''
-    # inserisci qui il tuo codice
+    count = 0
+    for line in tabella:
+        if valore not in line.values():
+            tabella.remove(line)  
+            count += 1
+        else:            
+            for riga in tabella:
+                del riga[colonna]
+    return count
+    
+        
+es27([{'C1': 4, 'C2': 7, 'C3': 'a'}, {'C1': 8, 'C2': 3, 'C3': 'c'}], 'C1', 3)
+                
+           
