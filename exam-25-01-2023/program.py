@@ -85,8 +85,17 @@ La funzione func2('func2_test_1') ritorna {'123456': 27, '121212': 79, '111111':
 '''
 
 def func2(pathname):
-    # scrivi qui il tuo codice
-    pass
+    diz = {}
+    with open(pathname) as f:
+        for line in f:
+            pair = line.strip().split(',')        
+            voto, matricola = pair
+            try:
+                diz[matricola] = max(int(voto), diz[matricola])
+            except KeyError:
+                diz[matricola] = int(voto)
+    return diz
+    
 
 
 # %% ----------------------------------- FUNC3 ------------------------- #
@@ -106,8 +115,13 @@ I file attesi sono visibili in func3_1_exp.txt, func3_2_exp.txt, func3_3_exp.txt
 
 
 def func3(listaA, pathname):
-    # scrivi qui il tuo codice
-    pass
+    count = 0
+    lista_ordinata = sorted(sorted(listaA, reverse = True), key=len)
+    with open(pathname, 'w') as f:
+        for i in lista_ordinata:
+            f.write(i+'\n')
+            count += len(i)
+    return count 
 
 
 # %% ----------------------------------- FUNC4 ------------------------- #
